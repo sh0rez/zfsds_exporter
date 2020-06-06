@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"os"
 	"os/exec"
 	"strings"
 )
@@ -16,6 +17,7 @@ func GetProps(dataset string, props []string) (map[string]string, error) {
 
 	var buf bytes.Buffer
 	cmd.Stdout = &buf
+	cmd.Stderr = os.Stderr
 
 	if err := cmd.Run(); err != nil {
 		return nil, err
