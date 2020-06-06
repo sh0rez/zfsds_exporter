@@ -1,0 +1,18 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: test
+    image: golang
+    commands:
+      - go test ./...
+
+  - name: docker
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: username
+      password:
+        from_secret: password
+      repo: shorez/zfsds_exporter
+      auto_tag: true
