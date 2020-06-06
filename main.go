@@ -56,7 +56,8 @@ func (c Collector) Collect(ch chan<- prometheus.Metric) {
 	for _, name := range c.Datasets {
 		values, err := GetProps(name, c.Props)
 		if err != nil {
-			return
+			log.Println(err)
+			continue
 		}
 
 		for k, v := range values {
